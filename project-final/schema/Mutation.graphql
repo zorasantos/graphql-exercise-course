@@ -1,35 +1,35 @@
 type Mutation {
     # Virgula opcional
-    # Mutations de Usuario
+    # Mutations de User
 
-    registrarUsuario(
-        dados: UsuarioRegistrarInput!
-    ): Usuario!
+    registerUser(
+        data: UserRegisterInput!
+    ): User!
 
-    novoUsuario(
-        dados: UsuarioInput!
-    ): Usuario!
+    newUser(
+        data: UserInput!
+    ): User!
 
-    excluirUsuario(
-        filtro: UsuarioFiltro!
-    ): Usuario
+    deleteUser(
+        filter: UserFilter!
+    ): User
 
-    alterarUsuario(
-        filtro: UsuarioFiltro!
-        dados: UsuarioInput!
-    ): Usuario
+    updateUser(
+        filter: UserFilter!
+        data: UserInput!
+    ): User
 
     # Mutations de Perfil
-    novoPerfil(
-        dados: PerfilInput!
+    newPerfil(
+        data: PerfilInput!
     ): Perfil!
 
-    excluirPerfil(
-        filtro: PerfilFiltro!
+    deletePerfil(
+        filter: PerfilFilter!
     ): Perfil
 
-    alterarPerfil(
-        filtro: PerfilFiltro!
-        dados: PerfilInput!
+    updatePerfil(
+        filter: PerfilFilter!
+        data: PerfilInput!
     ): Perfil
 }

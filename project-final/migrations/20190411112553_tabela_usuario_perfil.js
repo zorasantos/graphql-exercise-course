@@ -1,14 +1,14 @@
 
 exports.up = function(knex, Promise) {
-    return knex.schema.createTable('usuarios_perfis', table => {
-        table.integer('usuario_id').unsigned()
+    return knex.schema.createTable('users_perfis', table => {
+        table.integer('user_id').unsigned()
         table.integer('perfil_id').unsigned()
-        table.foreign('usuario_id').references('usuarios.id')
+        table.foreign('user_id').references('users.id')
         table.foreign('perfil_id').references('perfis.id')
-        table.primary(['usuario_id', 'perfil_id'])
+        table.primary(['user_id', 'perfil_id'])
     })
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('usuarios_perfis')
+    return knex.schema.dropTable('users_perfis')
 };

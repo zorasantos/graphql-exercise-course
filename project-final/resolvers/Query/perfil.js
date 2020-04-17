@@ -4,16 +4,16 @@ module.exports = {
     perfis() {
         return db('perfis')
     },
-    perfil(_, { filtro }) {
-        if(!filtro) return null
-        const { id, nome } = filtro
+    perfil(_, { filter }) {
+        if(!filter) return null
+        const { id, name } = filter
         if(id) {
             return db('perfis')
                 .where({ id })
                 .first()
-        } else if(nome) {
+        } else if(name) {
             return db('perfis')
-                .where({ nome })
+                .where({ name })
                 .first()
         } else {
             return null

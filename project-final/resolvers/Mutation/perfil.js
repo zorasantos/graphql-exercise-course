@@ -1,23 +1,23 @@
 const db = require('../../config/db')
-const { perfil: obterPerfil } = require('../Query/perfil')
+const { perfil: getPerfil } = require('../Query/perfil')
 
 module.exports = {
-    async novoPerfil(_, { dados }) {
+    async newPerfil(_, { data }) {
         try {
             const [ id ] = await db('perfis')
-                .insert(dados)
+                .insert(data)
             return db('perfis')
                 .where({ id }).first()
         } catch(e) {
             throw new Error(e.sqlMessage)
         }
     },
-    async excluirPerfil(_, args) {
+    async deletePerfil(_, args) {
         try {
-            const perfil = await obterPerfil(_, args)
+            const perfil = await getPerfil(_, args)
             if(perfil) {
                 const { id } = perfil
-                await db('usuarios_perfis')
+                await db('users_perfis')
                     .where({ perfil_id: id }).delete()
                 await db('perfis')
                     .where({ id }).delete()
@@ -27,16 +27,16 @@ module.exports = {
             throw new Error(e.sqlMessage)
         }
     },
-    async alterarPerfil(_, { filtro, dados }) {
+    async updatePerfil(_, { filter, data }) {
         try {
-            const perfil = await obterPerfil(_, { filtro })
+            const perfil = await getPerfil(_, { filter })
             if(perfil) {
                 const { id } = perfil
                 await db('perfis')
                     .where({ id })
-                    .update(dados)
+                    .update(data)
             }
-            return { ...perfil, ...dados }
+            return { ...perfil, ...data }
         } catch(e) {
             throw new Error(e.sqlMessage)
         }

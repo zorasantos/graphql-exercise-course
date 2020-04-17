@@ -2,12 +2,12 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('perfis', table => {
       table.increments('id').primary()
-      table.string('nome').notNull().unique()
-      table.string('rotulo').notNull()
+      table.string('name').notNull().unique()
+      table.string('tag').notNull()
   }).then(function () {
       return knex('perfis').insert([
-          { nome: 'comum', rotulo: 'Comum' },
-          { nome: 'admin', rotulo: 'Administrador' },
+          { name: 'comum', tag: 'Comum' },
+          { name: 'admin', tag: 'Administrador' },
       ])
   })
 };
